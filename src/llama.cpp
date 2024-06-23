@@ -5120,6 +5120,9 @@ static void llm_load_vocab(
                 tokenizer_pre == "poro-chat") {
                 vocab.type_pre = LLAMA_VOCAB_PRE_TYPE_PORO;
             } else if (
+                tokenizer_pre == "normistral-7b-warm") {
+                vocab.type_pre = LLAMA_VOCAB_PRE_TYPE_NORMISTRAL;
+            } else if (
                 tokenizer_pre == "viking") {
                 vocab.type_pre = LLAMA_VOCAB_PRE_TYPE_VIKING;
             } else {
@@ -13925,6 +13928,15 @@ struct llm_tokenizer_bpe {
             case LLAMA_VOCAB_PRE_TYPE_PORO:
                 regex_exprs = {
                     " ?[^(\\s|.,!?…。，、।۔،)]+",
+                };
+                break;
+            case LLAMA_VOCAB_PRE_TYPE_NORMISTRAL:
+                regex_exprs = {
+                    "[^\\S ]{1}",
+                    " {1}\\S+",
+                    " {0,1}\\d{1}",
+                    " {0,1}[^\\sA-Za-z0-9À-ÿĀ-ſḀ-ỿ]{1}",
+                    " {2,8}",
                 };
                 break;
             case LLAMA_VOCAB_PRE_TYPE_VIKING:
