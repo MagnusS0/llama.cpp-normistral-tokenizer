@@ -124,6 +124,7 @@ test: $(TEST_TARGETS)
 			./$$test_target $(CURDIR)/models/ggml-vocab-starcoder.gguf; \
 			./$$test_target $(CURDIR)/models/ggml-vocab-gpt-2.gguf; \
 			./$$test_target $(CURDIR)/models/ggml-vocab-refact.gguf; \
+			./$$test_target $(CURDIR)/models/ggml-vocab-normistral-7b-warm.gguf; \
 		elif [ "$$test_target" = "tests/test-tokenizer-1-spm" ]; then \
 			continue; \
 		elif [ "$$test_target" = "tests/test-tokenizer-1-bpe" ]; then \
